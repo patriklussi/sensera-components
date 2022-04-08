@@ -2,7 +2,7 @@
 	
 </script>
 
-<button class="buttonBlue"></button>
+<button class="buttonBlue">Press me</button>
 
 <style>
 	.buttonBlue {
