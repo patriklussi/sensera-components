@@ -1,4 +1,4 @@
-module.exports = function helloThere(){
+function helloThere(){
     console.log("Hello there");
 
 }
