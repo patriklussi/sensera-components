@@ -1,7 +1,9 @@
+/*
 export default function helloThere(){
     console.log("Hello there");
 
 }
+*/
 
 export default function renderThing(){
    let tempName = document.createElement("p");
