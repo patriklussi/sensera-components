@@ -9,3 +9,4 @@ const Rectangle= (props:RectangleProps) =>{
 
     
 }
+export default Rectangle
