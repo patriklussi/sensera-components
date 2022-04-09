@@ -1,23 +1,24 @@
 {
-  "name": "blue-button-test",
-  "version": "1.3.0",
-  "license": "MIT",
+  "name": "test-green-button",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patriklussi/test-green-button.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patriklussi/test-green-button/issues"
+  },
+  "homepage": "https://github.com/patriklussi/test-green-button#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0"
-  },
-  "dependencies": {
-    "sirv-cli": "^2.0.0"
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "typescript": "^4.6.3"
   }
 }
