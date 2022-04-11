@@ -1,5 +1,5 @@
 {
-  "name": "exempel-component-lib",
+  "name": "sensera-components",
   "version": "2.9.0",
   "description": "",
   "main": "dist/cjs/index.js",
