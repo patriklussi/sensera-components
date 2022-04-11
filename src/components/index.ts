@@ -1,3 +1,3 @@
-export {default as darkThemeColors} from "./Darkthemes"
-export {default as lightThemeColors} from "./Lightthemes"
+export {default as darkThemeColors} from "./darkThemeColors"
+export {default as lightThemeColors} from "./lightThemeColors"
 export {default as Globals} from "./Globals"
