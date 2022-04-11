@@ -1,1 +1,1 @@
-export {default} from "./Darktheme"
+export {default} from "./darkThemeColors"

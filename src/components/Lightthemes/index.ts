@@ -1,1 +1,1 @@
-export {default} from "./Lightthemes";
+export {default} from "./lightThemeColors";

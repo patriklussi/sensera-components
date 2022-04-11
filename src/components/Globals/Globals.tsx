@@ -1,4 +1,4 @@
-import lightThemeColors from "../Lightthemes/Lightthemes";
+import lightThemeColors from "../Lightthemes/lightThemeColors";
 
 const {info, grey } = lightThemeColors;
 
