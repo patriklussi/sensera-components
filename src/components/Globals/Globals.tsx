@@ -1,6 +1,6 @@
 import lightThemeColors from "../lightThemeColors/lightThemeColors";
 
-const {info, grey } = lightThemeColors;
+const { grey } = lightThemeColors;
 
 const globals = {
     "*, *::before, *::after": {
