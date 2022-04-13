@@ -23,8 +23,8 @@ const provideColorTheme = () => {
 };
 
 const mainTheme = (
-  dark: ITheme = darkThemeColors,
-  light: ITheme = lightThemeColors
+  light: ITheme = lightThemeColors,
+  dark: ITheme = darkThemeColors
 ) => {
   return createTheme({
     // @ts-ignore
@@ -64,8 +64,8 @@ const mainTheme = (
         defaultProps: {
           sx:
             themeMode === "light"
-              ? { backgroundColor: light.grey["300"] }
-              : { backgroundColor: dark.grey["800"] },
+              ? { backgroundColor: light.toolbar }
+              : { backgroundColor: dark.toolbar  },
         },
       },
       MuiDrawer: {
@@ -73,8 +73,8 @@ const mainTheme = (
           PaperProps: {
             sx:
               themeMode === "light"
-                ? { backgroundColor: light.grey["300"] }
-                : { backgroundColor: dark.grey["800"] },
+                ? { backgroundColor: light.drawer }
+                : { backgroundColor: dark.drawer },
           },
         },
       },
@@ -93,8 +93,8 @@ const mainTheme = (
           sx: {
             "&.Mui-selected":
               themeMode === "light"
-                ? { backgroundColor: light.grey[300] }
-                : { backgroundColor: light.grey[700] },
+                ? { backgroundColor: light.listItemSelected }
+                : { backgroundColor: light.listItemSelected },
           },
         },
       },
@@ -117,10 +117,10 @@ const mainTheme = (
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light" ? light.grey["300"] : dark.grey["800"],
+              themeMode === "light" ? light.inputFilled : dark.inputFilled,
             ":hover": {
               backgroundColor:
-                themeMode === "light" ? light.grey["300"] : dark.grey["800"],
+                themeMode === "light" ? light.inputHover : dark.inputHover,
             },
           },
         },
@@ -129,7 +129,7 @@ const mainTheme = (
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light" ? light.grey["300"] : dark.grey["800"],
+              themeMode === "light" ? light.form : dark.form,
           },
         },
       },
@@ -148,7 +148,7 @@ const mainTheme = (
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light" ? light.grey["100"] : dark.grey["1000"],
+              themeMode === "light" ? light.tableHead : dark.tableHead,
           },
         },
       },
@@ -156,7 +156,7 @@ const mainTheme = (
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light" ? light.common.white : dark.grey["900"],
+              themeMode === "light" ? light.tableBody : dark.tableBody,
           },
         },
       },

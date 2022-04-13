@@ -5,6 +5,15 @@ const darkThemeColors = {
         white: "#fff"
     },
 
+    toolbar: "#3d6a66",
+    drawer: "#3d6a66",
+    listItemSelected: "#3d6a66",
+    inputFilled: "#3d6a66",
+    inputHover: "#3d6a66",
+    form: "#3d6a66",
+    tableHead: "#3d6a66",
+    tableBody: "#3d6a66",
+    
     primary: {
         main: "#6188FF",
         light: "#e3f2fd",
@@ -48,23 +57,7 @@ const darkThemeColors = {
         contrastText: "rgba(0, 0, 0, 0.87)"
     },
 
-    grey: {
-        50: "#fafafa",
-        100: "#f5f5f5",
-        200: "#eeeeee",
-        300: "#e0e0e0",
-        400: "#bdbdbd",
-        500: "#9e9e9e",
-        600: "#757575",
-        700: "#616161",
-        800: "#424242",
-        900: "#212121",
-        1000: "#121212",
-        A100: "#f5f5f5",
-        A200: "#eeeeee",
-        A400: "#bdbdbd",
-        A700: "#616161"
-    },
+   
 
     text: {
         primary: "#fff",
