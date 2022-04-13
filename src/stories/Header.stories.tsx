@@ -1,6 +1,6 @@
 import React from "react";
 import {Meta,Story} from "@storybook/react";
-import Header from "./Header";
+import Header from "../components/root/Header/Header";
 
 const meta:Meta = {
     title:"Header",
@@ -10,4 +10,4 @@ const meta:Meta = {
 
 export default meta;
 
-export const Default = ()=> <Header isAuthenticated={true} login={()=>{}} logout={()=>{}} updateMain={()=>{}}/>
+export const Default = ()=> <Header  updateMain={()=>{}}/>
