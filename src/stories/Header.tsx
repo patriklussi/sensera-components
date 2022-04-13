@@ -23,6 +23,7 @@ import EventIcon from '@mui/icons-material/Event';
 import ChatIcon from '@mui/icons-material/Chat';
 import MenuIcon from '@mui/icons-material/Menu';
 import SwitchLeftIcon from '@mui/icons-material/SwitchLeft';
+import { mainTheme } from '../components/themes/mainTheme/mainTheme';
 
 
 
@@ -35,7 +36,7 @@ interface IMainProps {
 }
 
 export default function Header(props: IMainProps) {
-
+   
 
     const handleDrawerToggle = () => {
         props.updateMain();
