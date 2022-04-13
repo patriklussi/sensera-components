@@ -22,9 +22,10 @@ const provideColorTheme = () => {
   }
 };
 
-
-
-export const mainTheme = (dark:ITheme = darkThemeColors, light:ITheme = lightThemeColors) => {
+const mainTheme = (
+  dark: ITheme = darkThemeColors,
+  light: ITheme = lightThemeColors
+) => {
   return createTheme({
     // @ts-ignore
     palette: provideColorTheme(),
@@ -107,9 +108,7 @@ export const mainTheme = (dark:ITheme = darkThemeColors, light:ITheme = lightThe
                 : dark.success.darker,
             "& .MuiAlert-message": {
               color:
-                themeMode === "light"
-                  ? light.common.black
-                  : dark.text.primary,
+                themeMode === "light" ? light.common.black : dark.text.primary,
             },
           },
         },
@@ -118,14 +117,10 @@ export const mainTheme = (dark:ITheme = darkThemeColors, light:ITheme = lightThe
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light"
-                ? light.grey["300"]
-                : dark.grey["800"],
+              themeMode === "light" ? light.grey["300"] : dark.grey["800"],
             ":hover": {
               backgroundColor:
-                themeMode === "light"
-                  ? light.grey["300"]
-                  : dark.grey["800"],
+                themeMode === "light" ? light.grey["300"] : dark.grey["800"],
             },
           },
         },
@@ -134,9 +129,7 @@ export const mainTheme = (dark:ITheme = darkThemeColors, light:ITheme = lightThe
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light"
-                ? light.grey["300"]
-                : dark.grey["800"],
+              themeMode === "light" ? light.grey["300"] : dark.grey["800"],
           },
         },
       },
@@ -155,9 +148,7 @@ export const mainTheme = (dark:ITheme = darkThemeColors, light:ITheme = lightThe
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light"
-                ? light.grey["100"]
-                : dark.grey["1000"],
+              themeMode === "light" ? light.grey["100"] : dark.grey["1000"],
           },
         },
       },
@@ -165,12 +156,12 @@ export const mainTheme = (dark:ITheme = darkThemeColors, light:ITheme = lightThe
         defaultProps: {
           sx: {
             backgroundColor:
-              themeMode === "light"
-                ? light.common.white
-                : dark.grey["900"],
+              themeMode === "light" ? light.common.white : dark.grey["900"],
           },
         },
       },
     },
   });
 };
+
+export default mainTheme;

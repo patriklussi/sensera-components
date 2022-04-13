@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {alpha, styled} from '@mui/material/styles';
-import {useKeycloak} from "@react-keycloak/web";
+import { alpha, styled } from '@mui/material/styles';
+import { useKeycloak } from "@react-keycloak/web";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -23,26 +23,26 @@ import EventIcon from '@mui/icons-material/Event';
 import ChatIcon from '@mui/icons-material/Chat';
 import MenuIcon from '@mui/icons-material/Menu';
 import SwitchLeftIcon from '@mui/icons-material/SwitchLeft';
-import { mainTheme } from '../components/themes/mainTheme/mainTheme';
+import mainTheme from '../components/themes/mainTheme/mainTheme';
 
 
 
 
 interface IMainProps {
     updateMain(): void;
-    isAuthenticated:boolean;
-    login():void;
-    logout():void;
+    isAuthenticated: boolean;
+    login(): void;
+    logout(): void;
 }
 
 export default function Header(props: IMainProps) {
-   
+
 
     const handleDrawerToggle = () => {
         props.updateMain();
     };
-// test pushing
- 
+    // test pushing
+
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -111,8 +111,8 @@ export default function Header(props: IMainProps) {
                         },
                     },
                 }}
-                transformOrigin={{horizontal: 'right', vertical: 'top'}}
-                anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 {props.isAuthenticated ? (
                     <>
@@ -124,20 +124,20 @@ export default function Header(props: IMainProps) {
 
                         <MenuItem>
                             <ListItemIcon>
-                                <Settings fontSize="small"/>
+                                <Settings fontSize="small" />
                             </ListItemIcon>
                             Settings
                         </MenuItem>
                         <MenuItem onClick={() => props.logout()}>
                             <ListItemIcon>
-                                <Logout fontSize="small"/>
+                                <Logout fontSize="small" />
                             </ListItemIcon>
                             Logout
                         </MenuItem>
                     </>) : (
                     <MenuItem onClick={() => props.login()}>
                         <ListItemIcon>
-                            <Login fontSize="small"/>
+                            <Login fontSize="small" />
                         </ListItemIcon>
                         Login
                     </MenuItem>
@@ -166,7 +166,7 @@ export default function Header(props: IMainProps) {
             <MenuItem>
                 <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="error">
-                        <MailIcon/>
+                        <MailIcon />
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
@@ -178,7 +178,7 @@ export default function Header(props: IMainProps) {
                     color="inherit"
                 >
                     <Badge badgeContent={17} color="error">
-                        <NotificationsIcon/>
+                        <NotificationsIcon />
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>
@@ -193,7 +193,7 @@ export default function Header(props: IMainProps) {
                         aria-haspopup="true"
                         color="inherit"
                     >
-                        <AccountCircle/>
+                        <AccountCircle />
                     </IconButton>
                     <p>Profile</p>
                 </MenuItem>
@@ -206,7 +206,7 @@ export default function Header(props: IMainProps) {
                         aria-haspopup="true"
                         color="inherit"
                     >
-                        <Login/>
+                        <Login />
                         <p>Login</p>
                     </IconButton>
                 </MenuItem>
@@ -215,8 +215,8 @@ export default function Header(props: IMainProps) {
     );
 
     return (
-        <Box sx={{flexGrow: 1}}>
-            <AppBar position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "#471001"}}>
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: "#471001" }}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -224,11 +224,11 @@ export default function Header(props: IMainProps) {
                         edge="start"
                         // color="inherit"
                         aria-label="open drawer"
-                        sx={{mr: 2, display: {sm: 'none'}}}
+                        sx={{ mr: 2, display: { sm: 'none' } }}
                         onClick={handleDrawerToggle}
                     >
 
-                        <MenuIcon/>
+                        <MenuIcon />
 
 
                     </IconButton>
@@ -236,37 +236,37 @@ export default function Header(props: IMainProps) {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{display: {xs: 'none', sm: 'block'}}}
+                        sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
                     </Typography>
 
                     <Typography>Admin Portal</Typography>
 
-                    <Box sx={{flexGrow: 1}}/>
-                    <Box sx={{display: {xs: 'none', md: 'flex'}}}>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <Tooltip title="Byt till Lärarportalen" >
                             <IconButton
                                 color="inherit"
                                 aria-label="calendar"
-                                // color="inherit"
+                            // color="inherit"
                             >
-                                <SwitchLeftIcon/>
+                                <SwitchLeftIcon />
                             </IconButton>
                         </Tooltip>
                         <IconButton aria-label="calendar"
                             color="inherit"
                         >
-                            <EventIcon/>
+                            <EventIcon />
                         </IconButton>
 
                         <IconButton aria-label="show 1 message" color="inherit">
 
-                            <ChatIcon/>
+                            <ChatIcon />
 
                         </IconButton>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="warning">
-                                <MailIcon/>
+                                <MailIcon />
                             </Badge>
                         </IconButton>
                         <IconButton
@@ -276,7 +276,7 @@ export default function Header(props: IMainProps) {
 
                         >
 
-                            <NotificationsIcon/>
+                            <NotificationsIcon />
 
                         </IconButton>
                         <IconButton
@@ -289,10 +289,10 @@ export default function Header(props: IMainProps) {
                             onClick={handleProfileMenuOpen}
 
                         >
-                            <AccountCircle/>
+                            <AccountCircle />
                         </IconButton>
                     </Box>
-                    <Box sx={{display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             color="inherit"
                             size="large"
@@ -302,10 +302,10 @@ export default function Header(props: IMainProps) {
                             onClick={handleMobileMenuOpen}
 
                         >
-                            <MoreIcon/>
+                            <MoreIcon />
                         </IconButton>
                     </Box>
-                   
+
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
