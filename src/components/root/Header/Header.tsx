@@ -1,11 +1,11 @@
-import React, {FC, useContext, useState} from 'react';
+import React, { FC, useContext, useState } from 'react';
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Tooltip from "@mui/material/Tooltip";
-import {Link as RouterLink} from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import EventIcon from "@mui/icons-material/Event";
 import Badge from "@mui/material/Badge";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -18,19 +18,20 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Menu from "@mui/material/Menu";
 import RightSideCalenderDrawer from "./RightSideMenu";
-import HomeIcon from "@material-ui/icons";
 import UseSwitchesCustom from "./UseSwitchesCustom";
-import { RootModel } from './RootModel';
+import { Chat, RootModel } from './RootModel';
+import { Home as HomeIcon } from '@material-ui/icons';
+import {RootModelContext} from "./Context"
 
 interface Iprops {
     onIconMenuClicked?: () => void;
-    LinkToChatView:(string:string)=>void;
-    LinkToHome:()=>void;
-    LinkToProfileMainView:()=>void;
+    LinkToChatView: (string: string) => string;
+    LinkToHome: () => string;
+    LinkToProfileMainView: () => string;
 }
 
-const Header = (props:Iprops) => {
-
+const Header = (props: Iprops) => {
+    const rootData = useContext<RootModel>(RootModelContext);
     const [anchorElPopup, setAnchorElPopup] = useState<null | HTMLElement>(null);
     const [openPopup, setOpenPopup] = useState(false);
     const [openCalenderRightSideMenu, setOpenCalenderRightSideMenu] = useState(false);
@@ -49,20 +50,91 @@ const Header = (props:Iprops) => {
         setOpenCalenderRightSideMenu(!openCalenderRightSideMenu)
     };
 
+    const getPopupsByTextLabel = (rootData: RootModel, textLabel: string) => {
+        switch (textLabel) {
+            case "Chat":
+                return chatPopupMenu(rootData.chat)
+            case "Profile":
+                return ProfilePopupMenu()
+            case "More":
+                return morePopupMenu(rootData)
+        }
+    };
+
+    const chatPopupMenu = (chatMessages: Chat[]) => {
+        return (
+            chatMessages.map(msg => {
+                return (<div>
+                    <MenuItem component={RouterLink} to={props.LinkToChatView(msg.id)}>
+                        <ListItemIcon>
+                            <Avatar />
+                        </ListItemIcon>
+                        {msg.chatMessage}
+                    </MenuItem>
+                </div>
+                )
+            })
+        )
+    };
+
+    const ProfilePopupMenu = () => {
+        return (
+            <div>
+                <MenuItem component={RouterLink} to={props.LinkToProfileMainView()}>
+                    <ListItemIcon>
+                        <Avatar />
+                    </ListItemIcon>
+                    Profile
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
+            </div>
+        )
+    };
+
+    const morePopupMenu = (rootData: RootModel) => {
+        return (
+            <div>
+                <MenuItem component={RouterLink} to={props.LinkToProfileMainView()}>
+                    <ListItemIcon>
+                        <Avatar />
+                    </ListItemIcon>
+                    Profile
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                </MenuItem>
+            </div>
+        )
+    };
+
     return (
         <AppBar position="fixed" elevation={0} /*sx={{backgroundColor: '#dcdcdd'}}*/>
             <Toolbar disableGutters >
-                <IconButton onClick={props.onIconMenuClicked} sx={{mr: 'none', display: {md: 'none'}}}>
-                    <MenuIcon/>
+                <IconButton onClick={props.onIconMenuClicked} sx={{ mr: 'none', display: { md: 'none' } }}>
+                    <MenuIcon />
                 </IconButton>
-                <IconButton size={"large"} sx={{padding: 3}} component={RouterLink} to={() => props.LinkToHome()}>
-                    <HomeIcon color="action"/>
+                <IconButton size={"large"} sx={{ padding: 3 }} component={RouterLink} to={props.LinkToHome()}>
+                    <HomeIcon color="action" />
                 </IconButton>
-                <Box flexGrow={1}/>
+                <Box flexGrow={1} />
                 <Tooltip title="Calender">
                     <IconButton color="inherit"
-                                onClick={toggleRightSideMenu}>
-                        <EventIcon/>
+                        onClick={toggleRightSideMenu}>
+                        <EventIcon />
                     </IconButton>
                 </Tooltip>
                 <Tooltip title="Chat">
@@ -72,7 +144,7 @@ const Header = (props:Iprops) => {
                         component={RouterLink} to={props.LinkToChatView("chat")}
                     >
                         <Badge badgeContent={4} color="warning">
-                            <ChatIcon/>
+                            <ChatIcon />
                         </Badge>
                     </IconButton>
                 </Tooltip>
@@ -104,10 +176,10 @@ const Header = (props:Iprops) => {
                     </Grid>    */}
                 <Tooltip title="Profile">
                     <IconButton size="large" color="inherit" onClick={e => handleClickOpenPopup(e)}>
-                        <AccountCircle/>
+                        <AccountCircle />
                     </IconButton>
                 </Tooltip>
-           {/*     <IconButton
+                {/*     <IconButton
                     size="large"
                     color="inherit"
                     aria-label={"More"}
@@ -116,7 +188,7 @@ const Header = (props:Iprops) => {
                 >
                     <MoreIcon/>
                 </IconButton>*/}
-                <UseSwitchesCustom/>
+                <UseSwitchesCustom />
                 <Menu
                     anchorEl={anchorElPopup}
                     open={openPopup}
@@ -148,86 +220,16 @@ const Header = (props:Iprops) => {
                             },
                         },
                     }}
-                    transformOrigin={{horizontal: 'right', vertical: 'top'}}
-                    anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                    <ProfilePopupMenu/>
+                    <ProfilePopupMenu />
                 </Menu>
             </Toolbar>
-            <RightSideCalenderDrawer openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu}/>
+            <RightSideCalenderDrawer  openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
         </AppBar>
     );
 };
 
-const getPopupsByTextLabel = (rootData: RootModel, textLabel: string) => {
-    switch (textLabel) {
-        case "Chat":
-            return chatPopupMenu(rootData.chat)
-        case "Profile":
-            return ProfilePopupMenu()
-        case "More":
-            return morePopupMenu(rootData)
-    }
-};
-
-const chatPopupMenu = (chatMessages: Chat[]) => {
-    return (
-        chatMessages.map(msg => {
-            return (<div>
-                    <MenuItem component={RouterLink} to={props.LinkToChatView(msg.id)}>
-                        <ListItemIcon>
-                            <Avatar/>
-                        </ListItemIcon>
-                        {msg.chatMessage}
-                    </MenuItem>
-                </div>
-            )
-        })
-    )
-};
-
-const ProfilePopupMenu = () => {
-    return (
-        <div>
-            <MenuItem component={RouterLink} to={props.LinkToProfileMainView()}>
-                <ListItemIcon>
-                    <Avatar/>
-                </ListItemIcon>
-                Profile
-            </MenuItem>
-            <MenuItem>
-                <ListItemIcon>
-                    <Logout fontSize="small"/>
-                </ListItemIcon>
-                Logout
-            </MenuItem>
-        </div>
-    )
-};
-
-const morePopupMenu = (rootData: RootModel) => {
-    return (
-        <div>
-            <MenuItem component={RouterLink} to={props.LinkToProfileMainView()}>
-                <ListItemIcon>
-                    <Avatar/>
-                </ListItemIcon>
-                Profile
-            </MenuItem>
-            <MenuItem>
-                <ListItemIcon>
-                    <Settings fontSize="small"/>
-                </ListItemIcon>
-                Settings
-            </MenuItem>
-            <MenuItem>
-                <ListItemIcon>
-                    <Logout fontSize="small"/>
-                </ListItemIcon>
-                Logout
-            </MenuItem>
-        </div>
-    )
-};
 
 export default Header;
