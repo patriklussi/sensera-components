@@ -69,7 +69,7 @@ export const Header = ({ rootData, ...props }: Iprops) => {
         return (
             chatMessages.map(msg => {
                 return (<div>
-                    <MenuItem component={RouterLink} to={props.LinkToChatView(msg.id)}>
+                    <MenuItem onClick={() => props.LinkToChatView(msg.id)}>
                         <ListItemIcon>
                             <Avatar />
                         </ListItemIcon>
@@ -84,7 +84,7 @@ export const Header = ({ rootData, ...props }: Iprops) => {
     const ProfilePopupMenu = () => {
         return (
             <div>
-                <MenuItem component={RouterLink} to={props.LinkToProfileMainView()}>
+                <MenuItem onClick={() => props.LinkToProfileMainView()}>
                     <ListItemIcon>
                         <Avatar />
                     </ListItemIcon>
@@ -103,7 +103,7 @@ export const Header = ({ rootData, ...props }: Iprops) => {
     const morePopupMenu = (rootData: RootModel) => {
         return (
             <div>
-                <MenuItem component={RouterLink} to={props.LinkToProfileMainView()}>
+                <MenuItem onClick={() => props.LinkToProfileMainView()}>
                     <ListItemIcon>
                         <Avatar />
                     </ListItemIcon>
@@ -126,42 +126,42 @@ export const Header = ({ rootData, ...props }: Iprops) => {
     };
 
     return (
-        <Router>
-            <AppBar position="fixed" elevation={0} /*sx={{backgroundColor: '#dcdcdd'}}*/>
-                <Toolbar disableGutters >
-                    <IconButton onClick={props.onIconMenuClicked} sx={{ mr: 'none', display: { md: 'none' } }}>
-                        <MenuIcon />
-                    </IconButton>
-                    <IconButton size={"large"} sx={{ padding: 3 }} component={RouterLink} to={props.LinkToHome()}>
-                        <HomeIcon color="action" />
-                    </IconButton>
-                    <Box flexGrow={1} />
 
-                    {props.portal !== "student" ? (
-                        <Tooltip title={`${props.portal === "admin" ? "Byt till Lärare" : "Byt till Admin"}`}>
-                            <IconButton aria-label="calendar" color="inherit">
-                                <SwitchLeftOutlined />
-                            </IconButton>
-                        </Tooltip>
-                    ) : null}
-                    <Tooltip title="Calender">
-                        <IconButton color="inherit"
-                            onClick={toggleRightSideMenu}>
-                            <EventIcon />
+        <AppBar position="fixed" elevation={0} /*sx={{backgroundColor: '#dcdcdd'}}*/>
+            <Toolbar disableGutters >
+                <IconButton onClick={props.onIconMenuClicked} sx={{ mr: 'none', display: { md: 'none' } }}>
+                    <MenuIcon />
+                </IconButton>
+                <IconButton size={"large"} sx={{ padding: 3 }} onClick={() => props.LinkToHome()}>
+                    <HomeIcon color="action" />
+                </IconButton>
+                <Box flexGrow={1} />
+
+                {props.portal !== "student" ? (
+                    <Tooltip title={`${props.portal === "admin" ? "Byt till Lärare" : "Byt till Admin"}`}>
+                        <IconButton aria-label="calendar" color="inherit">
+                            <SwitchLeftOutlined />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Chat">
-                        <IconButton
-                            size="large"
-                            color="inherit"
-                            component={RouterLink} to={props.LinkToChatView("chat")}
-                        >
-                            <Badge badgeContent={4} color="warning">
-                                <ChatIcon />
-                            </Badge>
-                        </IconButton>
-                    </Tooltip>
-                    {/*   <Grid item>
+                ) : null}
+                <Tooltip title="Calender">
+                    <IconButton color="inherit"
+                        onClick={toggleRightSideMenu}>
+                        <EventIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Chat">
+                    <IconButton
+                        size="large"
+                        color="inherit"
+                        onClick={() => props.LinkToChatView("chat")}
+                    >
+                        <Badge badgeContent={4} color="warning">
+                            <ChatIcon />
+                        </Badge>
+                    </IconButton>
+                </Tooltip>
+                {/*   <Grid item>
                        <Tooltip title="Messages">
                             <IconButton
                                 size="large"
@@ -174,7 +174,7 @@ export const Header = ({ rootData, ...props }: Iprops) => {
                             </IconButton>
                         </Tooltip>
                     </Grid>   */}
-                    {/*   <Grid item>
+                {/*   <Grid item>
                         <Tooltip title="Notifications">
                             <IconButton
                                 size="large"
@@ -188,12 +188,12 @@ export const Header = ({ rootData, ...props }: Iprops) => {
                         </Tooltip>
                     </Grid>    */}
 
-                    <Tooltip title="Profile">
-                        <IconButton size="large" color="inherit" onClick={e => handleClickOpenPopup(e)}>
-                            <AccountCircle />
-                        </IconButton>
-                    </Tooltip>
-                    {/*     <IconButton
+                <Tooltip title="Profile">
+                    <IconButton size="large" color="inherit" onClick={e => handleClickOpenPopup(e)}>
+                        <AccountCircle />
+                    </IconButton>
+                </Tooltip>
+                {/*     <IconButton
                     size="large"
                     color="inherit"
                     aria-label={"More"}
@@ -202,47 +202,47 @@ export const Header = ({ rootData, ...props }: Iprops) => {
                 >
                     <MoreIcon/>
                 </IconButton>*/}
-                    <UseSwitchesCustom />
-                    <Menu
-                        anchorEl={anchorElPopup}
-                        open={openPopup}
-                        onClose={handleClosePopup}
-                        onClick={handleClosePopup}
-                        PaperProps={{
-                            elevation: 1,
-                            sx: {
-                                overflow: 'visible',
-                                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                                mt: 1.5,
-                                '& .MuiAvatar-root': {
-                                    width: 32,
-                                    height: 32,
-                                    ml: -0.5,
-                                    mr: 1,
-                                },
-                                '&:before': {
-                                    content: '""',
-                                    display: 'block',
-                                    position: 'absolute',
-                                    top: 0,
-                                    right: 14,
-                                    width: 10,
-                                    height: 10,
-                                    backgroundColor: 'background.paper',
-                                    transform: 'translateY(-50%) rotate(45deg)',
-                                    zIndex: 0,
-                                },
+                <UseSwitchesCustom />
+                <Menu
+                    anchorEl={anchorElPopup}
+                    open={openPopup}
+                    onClose={handleClosePopup}
+                    onClick={handleClosePopup}
+                    PaperProps={{
+                        elevation: 1,
+                        sx: {
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            mt: 1.5,
+                            '& .MuiAvatar-root': {
+                                width: 32,
+                                height: 32,
+                                ml: -0.5,
+                                mr: 1,
                             },
-                        }}
-                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                    >
-                        <ProfilePopupMenu />
-                    </Menu>
-                </Toolbar>
-                <RightSideCalenderDrawer rootData={rootData} openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
-            </AppBar>
-        </Router>
+                            '&:before': {
+                                content: '""',
+                                display: 'block',
+                                position: 'absolute',
+                                top: 0,
+                                right: 14,
+                                width: 10,
+                                height: 10,
+                                backgroundColor: 'background.paper',
+                                transform: 'translateY(-50%) rotate(45deg)',
+                                zIndex: 0,
+                            },
+                        },
+                    }}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                >
+                    <ProfilePopupMenu />
+                </Menu>
+            </Toolbar>
+            <RightSideCalenderDrawer rootData={rootData} openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
+        </AppBar>
+
     );
 };
 
