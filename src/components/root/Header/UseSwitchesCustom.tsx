@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import {styled} from '@mui/system';
-import {useSwitch, UseSwitchProps} from '@mui/base/SwitchUnstyled';
+import { styled } from '@mui/system';
+import { useSwitch, UseSwitchProps } from '@mui/base/SwitchUnstyled';
 
 const blue = {
     700: '#0059B2',
@@ -71,7 +71,7 @@ const SwitchThumb = styled('span')`
 `;
 
 const SwitchTrack = styled('span')(
-    ({theme}) => `
+    ({ theme }) => `
   background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[400]};
   border-radius: 4px;
   width: 100%;
@@ -81,7 +81,7 @@ const SwitchTrack = styled('span')(
 );
 
 function MUISwitch(props: UseSwitchProps) {
-    const {getInputProps, checked, disabled, focusVisible} = useSwitch(props);
+    const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
     const stateClasses = {
         checked,
@@ -92,9 +92,9 @@ function MUISwitch(props: UseSwitchProps) {
     return (
         <SwitchRoot className={clsx(stateClasses)}>
             <SwitchTrack>
-                <SwitchThumb className={clsx(stateClasses)}/>
+                <SwitchThumb className={clsx(stateClasses)} />
             </SwitchTrack>
-            <SwitchInput {...getInputProps()} aria-label="Demo switch"/>
+            <SwitchInput {...getInputProps()} aria-label="Demo switch" />
         </SwitchRoot>
     );
 }
@@ -126,5 +126,5 @@ export default function UseSwitchesCustom() {
         window.location.reload()
     }
 
-    return <MUISwitch checked={isChecked} onChange={() => toggleMode()}/>;
+    return <MUISwitch checked={isChecked} onChange={() => toggleMode()} />;
 }

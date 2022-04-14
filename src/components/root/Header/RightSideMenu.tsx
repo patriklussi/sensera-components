@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect, useState} from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import {
     Box,
     Button,
@@ -23,16 +23,20 @@ import {
 } from "@mui/material";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import {StaticDatePicker} from "@mui/lab";
-import {NotifyMessages, RootModel, Todo} from "./RootModel";
+import { StaticDatePicker } from "@mui/lab";
+import { NotifyMessages, RootModel, Todo } from "./RootModel";
 import HighlightNotificationDaysSideMenuCalender from "./HighlightNotificationDaysSideMenuCalender";
-import { RootModelContext } from './Context';
+
 
 const drawerWidth = 350;
 
 interface I {
     openDrawer: boolean
     closeDrawer: () => void,
+    rootData: RootModel
+}
+interface IChildProps {
+    rootData: RootModel
 }
 
 interface ArrayOpenNotifyI {
@@ -45,8 +49,8 @@ interface TabPanelProps {
     value: number;
 }
 
-export const SideMenuCalenderPage = () => {
-    const rootData = useContext<RootModel>(RootModelContext)
+export const SideMenuCalenderPage = (props: IChildProps) => {
+    const [rootData, setRootData] = useState(props.rootData)
     const [notifyData, setNotifyData] = useState<NotifyMessages[]>();
     const [isCollapseOpenArray, setIsCollapseOpenArray] = useState<ArrayOpenNotifyI>({
         settings: [{
@@ -65,9 +69,9 @@ export const SideMenuCalenderPage = () => {
     }, [])
 
     const refreshNotifyTmpArray = () => {
-        let newArray = {settings: [{}]} as ArrayOpenNotifyI
+        let newArray = { settings: [{}] } as ArrayOpenNotifyI
         rootData.notifyMessages.forEach(item => {
-            let tmpArray = {id: item.id, open: false}
+            let tmpArray = { id: item.id, open: false }
             newArray.settings.push(tmpArray)
         })
         setIsCollapseOpenArray(newArray)
@@ -93,7 +97,7 @@ export const SideMenuCalenderPage = () => {
     const onClickToggleOpen = (id: string) => {
         setIsCollapseOpenArray(state => ({
             ...state,
-            settings: state.settings.map(item => item.id === id ? {...item, open: !item.open} : item)
+            settings: state.settings.map(item => item.id === id ? { ...item, open: !item.open } : item)
         }) as ArrayOpenNotifyI);
     };
 
@@ -109,19 +113,19 @@ export const SideMenuCalenderPage = () => {
                         onChange={(newValue) => onChangeUpdateNotifyList(newValue)}
                         allowSameDateSelection={true}
                         disabled={false}
-                        renderInput={(params) => <TextField {...params} sx={{border: "solid"}}/>}
+                        renderInput={(params) => <TextField {...params} sx={{ border: "solid" }} />}
                         renderDay={(day, selectedDates, pickersDayProps) =>
                             HighlightNotificationDaysSideMenuCalender(day, selectedDates, pickersDayProps, rootData)}
                     />
                 </LocalizationProvider>
             </Grid>
-            <Divider sx={{marginBottom: 3}}/>
-            <Box sx={{flexGrow: 1, marginBottom: 10}}>
+            <Divider sx={{ marginBottom: 3 }} />
+            <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
                 {notifyData?.map(notifyItem => {
                     return (
                         <Card
                             key={notifyItem.id}
-                            sx={{margin: 1}}
+                            sx={{ margin: 1 }}
                             onClick={() => onClickToggleOpen(notifyItem.id)}
                         >
                             <CardActionArea>
@@ -136,7 +140,7 @@ export const SideMenuCalenderPage = () => {
                                     </Grid>
                                     <Grid container pt={1}>
                                         <Collapse in={collapseNotifyItemIfOpen(notifyItem)} timeout="auto"
-                                                  unmountOnExit>
+                                            unmountOnExit>
                                             <Grid item>
                                                 <Typography>{notifyItem.description}</Typography>
                                             </Grid>
@@ -152,8 +156,8 @@ export const SideMenuCalenderPage = () => {
     )
 }
 
-export const SideMenuTodoPage = () => {
-    const rootData = useContext<RootModel>(RootModelContext)
+export const SideMenuTodoPage = (props: IChildProps) => {
+    const [rootData, setRootData] = useState(props.rootData)
     const [textInput, setTextInput] = useState("");
     const [todoList, setTodoList] = useState<Todo[]>([]);
 
@@ -162,7 +166,7 @@ export const SideMenuTodoPage = () => {
     }, [])
 
     const btnAddTodoHandler = () => {
-        const newElement = {id: todoList.length + 1, title: textInput, checked: false}
+        const newElement = { id: todoList.length + 1, title: textInput, checked: false }
         setTodoList(oldArray => [...oldArray, newElement]);
         setTextInput("")
     };
@@ -188,7 +192,7 @@ export const SideMenuTodoPage = () => {
                 <FormControl variant="filled" fullWidth>
                     <InputLabel>Add Tasks</InputLabel>
                     <FilledInput
-                        sx={{padding: 1}}
+                        sx={{ padding: 1 }}
                         value={textInput}
                         type={"text"}
                         onChange={e => setTextInput(e.target.value)}
@@ -210,7 +214,7 @@ export const SideMenuTodoPage = () => {
                 </FormControl>
             </Grid>
             <Grid item>
-                <List sx={{width: '100%', maxWidth: 360}}>
+                <List sx={{ width: '100%', maxWidth: 360 }}>
                     {todoList.map((todoItem) => {
                         return (
                             <ListItem
@@ -218,10 +222,10 @@ export const SideMenuTodoPage = () => {
                                 disablePadding
                             >
                                 <ListItemButton onClick={updateCheckedStatus(todoItem)}>
-                                    <ListItemText primary={todoItem.title}/>
+                                    <ListItemText primary={todoItem.title} />
                                     <Button color={"error"}
-                                            variant={"outlined"}
-                                            onClick={() => deleteTodoItem(todoItem.id)}
+                                        variant={"outlined"}
+                                        onClick={() => deleteTodoItem(todoItem.id)}
                                     >
                                         Delete
                                     </Button>
@@ -237,7 +241,7 @@ export const SideMenuTodoPage = () => {
 
 class TabPanel extends React.Component<TabPanelProps> {
     render() {
-        const {children, value, index, ...other} = this.props;
+        const { children, value, index, ...other } = this.props;
         return (
             <div
                 role="tabpanel"
@@ -283,8 +287,8 @@ const RightSideMenu: FC<I> = (props) => {
                     value={tabValue}
                     onChange={handleTabsOnClick}
                 >
-                    <Tab label="Calender"/>
-                    <Tab label="Todo"/>
+                    <Tab label="Calender" />
+                    <Tab label="Todo" />
                 </Tabs>
                 <Grid item mr={1}>
                     <Button
@@ -297,10 +301,10 @@ const RightSideMenu: FC<I> = (props) => {
                 </Grid>
             </Grid>
             <TabPanel value={tabValue} index={0}>
-                <SideMenuCalenderPage/>
+                <SideMenuCalenderPage rootData={props.rootData} />
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
-                <SideMenuTodoPage/>
+                <SideMenuTodoPage rootData={props.rootData} />
             </TabPanel>
         </Drawer>
     );

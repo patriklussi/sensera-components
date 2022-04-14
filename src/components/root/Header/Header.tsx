@@ -18,11 +18,12 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Menu from "@mui/material/Menu";
 /* import RightSideCalenderDrawer from "./RightSideMenu"; */
-/* import UseSwitchesCustom from "./UseSwitchesCustom"; */
+import UseSwitchesCustom from "./UseSwitchesCustom";
 import { Chat, RootModel } from './RootModel';
 import { Home as HomeIcon } from '@material-ui/icons';
-import {RootModelContext} from "./Context"
+
 import RightSideCalenderDrawer from "./RightSideMenu";
+import { SwitchLeftOutlined } from '@mui/icons-material';
 
 export interface Iprops {
     portal: "admin" | "teacher" | "student";
@@ -30,10 +31,11 @@ export interface Iprops {
     LinkToChatView: (string: string) => string;
     LinkToHome: () => string;
     LinkToProfileMainView: () => string;
+    rootData: RootModel
 }
 
-export const Header = (props: Iprops) => {
-    const rootData = useContext<RootModel>(RootModelContext);
+export const Header = ({ rootData, ...props }: Iprops) => {
+
     const [anchorElPopup, setAnchorElPopup] = useState<null | HTMLElement>(null);
     const [openPopup, setOpenPopup] = useState(false);
     const [openCalenderRightSideMenu, setOpenCalenderRightSideMenu] = useState(false);
@@ -133,6 +135,14 @@ export const Header = (props: Iprops) => {
                     <HomeIcon color="action" />
                 </IconButton>
                 <Box flexGrow={1} />
+
+                {props.portal !== "student" ? (
+                    <Tooltip title={`${props.portal === "admin" ? "Byt till Lärare" : "Byt till Admin"}`}>
+                        <IconButton aria-label="calendar" color="inherit">
+                            <SwitchLeftOutlined />
+                        </IconButton>
+                    </Tooltip>
+                ):null}
                 <Tooltip title="Calender">
                     <IconButton color="inherit"
                         onClick={toggleRightSideMenu}>
@@ -176,7 +186,7 @@ export const Header = (props: Iprops) => {
                             </IconButton>
                         </Tooltip>
                     </Grid>    */}
-            
+
                 <Tooltip title="Profile">
                     <IconButton size="large" color="inherit" onClick={e => handleClickOpenPopup(e)}>
                         <AccountCircle />
@@ -191,7 +201,7 @@ export const Header = (props: Iprops) => {
                 >
                     <MoreIcon/>
                 </IconButton>*/}
-          {/*       <UseSwitchesCustom /> */}
+                <UseSwitchesCustom />
                 <Menu
                     anchorEl={anchorElPopup}
                     open={openPopup}
@@ -229,7 +239,7 @@ export const Header = (props: Iprops) => {
                     <ProfilePopupMenu />
                 </Menu>
             </Toolbar>
-        <RightSideCalenderDrawer  openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
+            <RightSideCalenderDrawer rootData={rootData} openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
         </AppBar>
     );
 };

@@ -1,14 +1,6 @@
-import React, {createContext, useEffect, useState} from 'react';
-import {useKeycloak} from "@react-keycloak/web";
-import {RootModel, StudentAssignment, Unit} from "./RootModel";
 
-export const RootModelContext = createContext<RootModel>({} as RootModel);
 
-type Props = {
-    children: JSX.Element,
-};
-
-const tmpMockData = {
+export const mockData = {
     userName: "tmp",
     courses: [],
     chat: [{id: "1", writer: "writer1", chatMessage: "Hello"}, {id: "2", writer: "writer2", chatMessage: "Hello"}],
@@ -26,25 +18,3 @@ const tmpMockData = {
     todo: [{id: 1, title: "todo1", checked: false}]
 }
 
-const blankData = {
-    userName: "",
-    courses: [{id: "", name: "", events: 1, units: [{id: "", name: "", icon: "", studentAssignment: [{id: "",name: "",assignmentId: "",events: 1,img: "",description: ""}]}]}],
-    chat: [{id: "", writer: "", chatMessage: ""}],
-    messages: [{id: "", title: "", content: ""}],
-    notifyMessages: [{id: "", date: "", time: "", title: "", description: "", author: ""}],
-    todo: [{id: 1, title: "", checked: false}]
-}
-
-export const RootModelProvider = ({children}: Props) => {
-    const [rootData, setRootData] = useState<RootModel>(tmpMockData)
-
-
-
-
-    if (!rootData) return null
-    return (
-        <RootModelContext.Provider value={rootData}>
-            {children}
-        </RootModelContext.Provider>
-    )
-}
