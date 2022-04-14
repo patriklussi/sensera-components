@@ -24,17 +24,15 @@ import {
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {StaticDatePicker} from "@mui/lab";
-import {RootModelContext} from "./Context"
-
 import {NotifyMessages, RootModel, Todo} from "./RootModel";
 import HighlightNotificationDaysSideMenuCalender from "./HighlightNotificationDaysSideMenuCalender";
+import { RootModelContext } from './Context';
 
 const drawerWidth = 350;
 
 interface I {
     openDrawer: boolean
     closeDrawer: () => void,
-   
 }
 
 interface ArrayOpenNotifyI {
@@ -48,7 +46,7 @@ interface TabPanelProps {
 }
 
 export const SideMenuCalenderPage = () => {
-    const rootData = useContext<RootModel>(RootModelContext);
+    const rootData = useContext<RootModel>(RootModelContext)
     const [notifyData, setNotifyData] = useState<NotifyMessages[]>();
     const [isCollapseOpenArray, setIsCollapseOpenArray] = useState<ArrayOpenNotifyI>({
         settings: [{

@@ -1,9 +1,8 @@
-import React from 'react';
 import PickersDay, {PickersDayProps} from "@mui/lab/PickersDay";
 import addDays from "date-fns/addDays";
 import isSameDay from "date-fns/isSameDay";
-import { RootModel } from './RootModel';
-
+import { RootModel } from "./RootModel";
+import React from "react";
 
 const HighlightNotificationDaysSideMenuCalender = (
     date: Date,

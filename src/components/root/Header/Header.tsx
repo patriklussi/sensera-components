@@ -17,20 +17,22 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Menu from "@mui/material/Menu";
-import RightSideCalenderDrawer from "./RightSideMenu";
-import UseSwitchesCustom from "./UseSwitchesCustom";
+/* import RightSideCalenderDrawer from "./RightSideMenu"; */
+/* import UseSwitchesCustom from "./UseSwitchesCustom"; */
 import { Chat, RootModel } from './RootModel';
 import { Home as HomeIcon } from '@material-ui/icons';
 import {RootModelContext} from "./Context"
+import RightSideCalenderDrawer from "./RightSideMenu";
 
-interface Iprops {
+export interface Iprops {
+    portal: "admin" | "teacher" | "student";
     onIconMenuClicked?: () => void;
     LinkToChatView: (string: string) => string;
     LinkToHome: () => string;
     LinkToProfileMainView: () => string;
 }
 
-const Header = (props: Iprops) => {
+export const Header = (props: Iprops) => {
     const rootData = useContext<RootModel>(RootModelContext);
     const [anchorElPopup, setAnchorElPopup] = useState<null | HTMLElement>(null);
     const [openPopup, setOpenPopup] = useState(false);
@@ -174,6 +176,7 @@ const Header = (props: Iprops) => {
                             </IconButton>
                         </Tooltip>
                     </Grid>    */}
+            
                 <Tooltip title="Profile">
                     <IconButton size="large" color="inherit" onClick={e => handleClickOpenPopup(e)}>
                         <AccountCircle />
@@ -188,7 +191,7 @@ const Header = (props: Iprops) => {
                 >
                     <MoreIcon/>
                 </IconButton>*/}
-                <UseSwitchesCustom />
+          {/*       <UseSwitchesCustom /> */}
                 <Menu
                     anchorEl={anchorElPopup}
                     open={openPopup}
@@ -226,7 +229,7 @@ const Header = (props: Iprops) => {
                     <ProfilePopupMenu />
                 </Menu>
             </Toolbar>
-            <RightSideCalenderDrawer  openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
+        <RightSideCalenderDrawer  openDrawer={openCalenderRightSideMenu} closeDrawer={toggleRightSideMenu} />
         </AppBar>
     );
 };

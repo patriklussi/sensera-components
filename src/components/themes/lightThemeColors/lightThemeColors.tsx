@@ -5,7 +5,7 @@ const lightThemeColors = {
         white: "#fff"
     },
 
-    toolbar: "#3d6a66",
+    toolbar: "#e0e0e0",
     drawer: "#3d6a66",
     listItemSelected: "#3d6a66",
     inputFilled: "#3d6a66",
