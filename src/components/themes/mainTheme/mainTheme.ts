@@ -30,9 +30,9 @@ const mainTheme = (
     // @ts-ignore
     palette: ()=>{
       if(themeMode === "light")
-      return light
+      return {...light}
       else{
-        return dark
+        return {...dark}
       }
     },
     typography: {},
