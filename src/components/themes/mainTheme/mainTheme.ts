@@ -14,13 +14,13 @@ if (!localStorage.getItem("theme")) {
 
 let themeMode = localStorage.getItem("theme");
 
-const provideColorTheme = () => {
+/* const provideColorTheme = () => {
   if (themeMode === "light") {
     return { ...lightThemeColors };
   } else if (themeMode === "dark") {
     return { ...darkThemeColors };
   }
-};
+}; */
 
 const mainTheme = (
   light: ITheme = lightThemeColors,
@@ -28,7 +28,13 @@ const mainTheme = (
 ) => {
   return createTheme({
     // @ts-ignore
-    palette: provideColorTheme(),
+    palette: ()=>{
+      if(themeMode === "light")
+      return light
+      else{
+        return dark
+      }
+    },
     typography: {},
     breakpoints: { ...breakpoints },
     shape: {},
