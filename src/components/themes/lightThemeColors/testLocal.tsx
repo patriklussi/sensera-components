@@ -1,11 +1,11 @@
-const lightThemeColors = {
+const testLocal = {
 
     common: {
         black: "#000",
         white: "#fff"
     },
 
-    toolbar: "#ba68c8",
+    toolbar: "#d32f2f",
     drawer: "#3d6a66",
     listItemSelected: "#3d6a66",
     inputFilled: "#3d6a66",
@@ -91,4 +91,4 @@ const lightThemeColors = {
 
 };
 
-export default lightThemeColors;
+export default testLocal;
