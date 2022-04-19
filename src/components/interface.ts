@@ -56,4 +56,6 @@ interface ITheme {
     focusOpacity: string;
     activatedOpacity: string;
   };
+  scrollbarColor:string;
+  scrollbarHover:string;
 }

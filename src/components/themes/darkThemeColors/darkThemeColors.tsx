@@ -13,7 +13,7 @@ const darkThemeColors = {
     form: "#3d6a66",
     tableHead: "#3d6a66",
     tableBody: "#3d6a66",
-    
+
     primary: {
         main: "#6188FF",
         light: "#e3f2fd",
@@ -57,7 +57,7 @@ const darkThemeColors = {
         contrastText: "rgba(0, 0, 0, 0.87)"
     },
 
-   
+
 
     text: {
         primary: "#fff",
@@ -87,7 +87,9 @@ const darkThemeColors = {
         focus: "rgba(255, 255, 255, 0.12)",
         focusOpacity: "0.12",
         activatedOpacity: "0.24"
-    }
+    },
+    scrollbarColor: "rgba(34,45,58,0.53)",
+    scrollbarHover: "rgba(69,86,100,0.52)"
 }
 
 export default darkThemeColors;

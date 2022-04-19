@@ -88,6 +88,8 @@ const lightThemeColors = {
         focusOpacity: "0.12",
         activatedOpacity: "0.12"
     },
+    scrollbarColor:"rgba(34,45,58,0.53)",
+    scrollbarHover:"rgba(69,86,100,0.52)"
 
 };
 
