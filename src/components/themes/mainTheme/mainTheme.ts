@@ -26,15 +26,13 @@ const mainTheme = (
   light: ITheme = lightThemeColors,
   dark: ITheme = darkThemeColors
 ) => {
+  let chosen = light;
+  if (themeMode === "dark") {
+    chosen = dark;
+  }
   return createTheme({
     // @ts-ignore
-    palette: ()=>{
-      if(themeMode === "light")
-      return {...light}
-      else{
-        return {...dark}
-      }
-    },
+    palette: chosen,
     typography: {},
     breakpoints: { ...breakpoints },
     shape: {},
@@ -71,7 +69,7 @@ const mainTheme = (
           sx:
             themeMode === "light"
               ? { backgroundColor: light.toolbar }
-              : { backgroundColor: dark.toolbar  },
+              : { backgroundColor: dark.toolbar },
         },
       },
       MuiDrawer: {
@@ -134,8 +132,7 @@ const mainTheme = (
       MuiFormControl: {
         defaultProps: {
           sx: {
-            backgroundColor:
-              themeMode === "light" ? light.form : dark.form,
+            backgroundColor: themeMode === "light" ? light.form : dark.form,
           },
         },
       },
