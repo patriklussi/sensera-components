@@ -26,9 +26,9 @@ const mainTheme = (
   light: ITheme = lightThemeColors,
   dark: ITheme = darkThemeColors
 ) => {
-  let chosen = light;
+  let chosen = {...light};
   if (themeMode === "dark") {
-    chosen = dark;
+    chosen = {...dark};
   }
   return createTheme({
     // @ts-ignore
