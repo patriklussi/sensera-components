@@ -37,7 +37,7 @@ const mainTheme = (
     breakpoints: { ...breakpoints },
     shape: {},
     // @ts-ignore
-    shadows: createShadow(provideColorTheme().primary.main),
+    shadows: createShadow(chosen.primary.main),
     components: {
       MuiCssBaseline: {
         styleOverrides: {
