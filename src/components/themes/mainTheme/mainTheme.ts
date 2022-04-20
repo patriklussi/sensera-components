@@ -14,6 +14,7 @@ if (!localStorage.getItem("theme")) {
 
 let themeMode = localStorage.getItem("theme");
 
+/* flytta globals hit */
 /* const provideColorTheme = () => {
   if (themeMode === "light") {
     return { ...lightThemeColors };
