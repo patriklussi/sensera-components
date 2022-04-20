@@ -1,7 +1,4 @@
 import { createTheme } from "@mui/material";
-
-/* import lightThemeColors from "../lightThemeColors";
-import darkThemeColors from "../darkThemeColors"; */
 import breakpoints from "../../breakpoints";
 import globals from "../../globals/globals";
 import container from "../../container";
@@ -14,22 +11,13 @@ if (!localStorage.getItem("theme")) {
 
 let themeMode = localStorage.getItem("theme");
 
-/* flytta globals hit */
-/* const provideColorTheme = () => {
-  if (themeMode === "light") {
-    return { ...lightThemeColors };
-  } else if (themeMode === "dark") {
-    return { ...darkThemeColors };
-  }
-}; */
-
 const mainTheme = (
   light: ITheme = lightThemeColors,
   dark: ITheme = darkThemeColors
 ) => {
-  let chosen = {...light};
+  let chosen = { ...light };
   if (themeMode === "dark") {
-    chosen = {...dark};
+    chosen = { ...dark };
   }
   return createTheme({
     // @ts-ignore
@@ -44,14 +32,20 @@ const mainTheme = (
         styleOverrides: {
           ...globals,
           ...container,
+          "*::-webkit-scrollbar-thumb": {
+            backgroundColor: `${chosen.scrollbarColor}`,
+            borderRadius: "20px",
+            border: "6px solid transparent",
+            backgroundClip: "content-box",
+          },
+          "::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: `${chosen.scrollbarHover}`,
+          },
         },
       },
       MuiContainer: {
         defaultProps: {
-          sx:
-            themeMode === "light"
-              ? { backgroundColor: light.background.paper }
-              : { backgroundColor: dark.background.paper },
+          sx: { backgroundColor: chosen.background.paper },
         },
       },
       MuiGrid: { defaultProps: {} },
@@ -67,19 +61,13 @@ const mainTheme = (
       },
       MuiToolbar: {
         defaultProps: {
-          sx:
-            themeMode === "light"
-              ? { backgroundColor: light.toolbar }
-              : { backgroundColor: dark.toolbar },
+          sx: { backgroundColor: chosen.toolbar },
         },
       },
       MuiDrawer: {
         defaultProps: {
           PaperProps: {
-            sx:
-              themeMode === "light"
-                ? { backgroundColor: light.drawer }
-                : { backgroundColor: dark.drawer },
+            sx: { backgroundColor: chosen.drawer },
           },
         },
       },
@@ -96,10 +84,7 @@ const mainTheme = (
       MuiListItemButton: {
         defaultProps: {
           sx: {
-            "&.Mui-selected":
-              themeMode === "light"
-                ? { backgroundColor: light.listItemSelected }
-                : { backgroundColor: light.listItemSelected },
+            "&.Mui-selected": { backgroundColor: chosen.listItemSelected },
           },
         },
       },
@@ -121,11 +106,9 @@ const mainTheme = (
       MuiFilledInput: {
         defaultProps: {
           sx: {
-            backgroundColor:
-              themeMode === "light" ? light.inputFilled : dark.inputFilled,
+            backgroundColor: chosen.inputFilled,
             ":hover": {
-              backgroundColor:
-                themeMode === "light" ? light.inputHover : dark.inputHover,
+              backgroundColor: chosen.inputHover,
             },
           },
         },
@@ -133,7 +116,7 @@ const mainTheme = (
       MuiFormControl: {
         defaultProps: {
           sx: {
-            backgroundColor: themeMode === "light" ? light.form : dark.form,
+            backgroundColor: chosen.form,
           },
         },
       },
@@ -141,26 +124,21 @@ const mainTheme = (
       MuiAccordion: {
         defaultProps: {
           sx: {
-            border:
-              themeMode === "light"
-                ? `1px solid ${light.divider}`
-                : `1px solid ${dark.divider}`,
+            border: `1px solid ${chosen.divider}`,
           },
         },
       },
       MuiTableHead: {
         defaultProps: {
           sx: {
-            backgroundColor:
-              themeMode === "light" ? light.tableHead : dark.tableHead,
+            backgroundColor: chosen.tableHead,
           },
         },
       },
       MuiTableBody: {
         defaultProps: {
           sx: {
-            backgroundColor:
-              themeMode === "light" ? light.tableBody : dark.tableBody,
+            backgroundColor: chosen.tableBody,
           },
         },
       },

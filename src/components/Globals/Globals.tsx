@@ -1,19 +1,4 @@
-import darkThemeColors from "../themes/darkThemeColors";
-import lightThemeColors from "../themes/lightThemeColors/lightThemeColors";
 
-
-if (!localStorage.getItem("theme")) {
-    localStorage.setItem("theme", "light");
-}
-
-let themeMode = localStorage.getItem("theme");
-
-let scrollColor = lightThemeColors.scrollbarColor
-let hoverColor = lightThemeColors.scrollbarHover
-if(themeMode === "dark"){
-    scrollColor = darkThemeColors.scrollbarColor
-    hoverColor = darkThemeColors.scrollbarHover
-}
 
 const globals = {
     "*, *::before, *::after": {
@@ -31,15 +16,7 @@ const globals = {
     '*::-webkit-scrollbar': {
         width: '20px'
     },
-    '*::-webkit-scrollbar-thumb': {
-        backgroundColor: `${scrollColor}`,
-        borderRadius: '20px',
-        border: '6px solid transparent',
-        backgroundClip: 'content-box'
-    },
-    '::-webkit-scrollbar-thumb:hover': {
-        backgroundColor: `${hoverColor}`
-    }
+
 };
 
 export default globals;
